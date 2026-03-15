@@ -9,17 +9,25 @@ This is not a maintained project. No updates are guaranteed. Use it as a startin
 ## Tools
 
 ### `subnet_movements.py`
+
 Network-wide snapshot of all active subnets. Shows current Alpha price vs 30-day EMA, price momentum, TAO/block emission, TAO and Alpha reserves, and volume. Use this first to get a read on where each subnet sits in its flow cycle before going deeper.
 
 ### `subnet_deep_overview.py`
+
 Cross-subnet yield scanner. Scans all active subnets (or a custom list) and ranks them by best available combined APY — emission + price — surfacing the top validator per subnet alongside concentration flags. Use this to narrow down which subnets are worth a closer look.
 
 ### `subnet_validator_overview.py`
+
 Single-subnet validator breakdown. Takes a subnet ID and your stake size, then outputs every active validator's emission APY, price APY, combined APY, take rate, Tv score, and pool concentration. Use this to make the final validator selection within a subnet.
 
 ### `root_validator_overview.py`
+
 Root network equivalent. No AMM layer, no Alpha exposure. Shows validator pool stakes, dividends, take rates, your personal yield estimate, and last activity timestamp.
 Root is not simply lower yield — it is structural capital. TAO functions as a layered portfolio: Root is the base allocation, subnet Alpha positions are higher-volatility overlays on top. Root stake stays denominated in TAO, compounds steadily, and can be redeployed without AMM slippage when opportunity emerges. Use this as a foundation to make subnets' structure possible.
+
+### `chutes_sn64_analysis.py`
+
+SN64 Chutes intelligence market hypothesis test. Fetches 7-day invocation exports from api.chutes.ai, merges with on-chain metagraph data, and tests whether validator weight allocations reflect real demand. Outputs Spearman and Pearson correlation analysis, divergence tables, demand-side user concentration, Root x SN64 validator overlap, and miner incentive concentration metrics. The forensic methodology navigates Chutes' E2EE architecture using timing data, function distributions, and image ownership records to fingerprint the dominant user without accessing encrypted content.
 
 ---
 
@@ -31,24 +39,30 @@ subnet_movements.py      →    subnet_deep_overview.py    →    subnet_validat
                                           |
                               root_validator_overview.py
                                     (root baseline)
+
+                                          |
+                             chutes_sn64_analysis.py
+                            (subnet-specific deep dive)
 ```
 
 ---
 
 ## Installation
-```bash
-pip install bittensor
+```
+pip install bittensor requests
 ```
 
 Run any script directly:
-```bash
+```
 python subnet_movements.py
 python subnet_deep_overview.py
 python subnet_validator_overview.py
 python root_validator_overview.py
+python chutes_sn64_analysis.py
+python chutes_sn64_analysis.py --root-threshold 1000 --alpha-threshold 1000
 ```
 
-> **Note:** `subnet_deep_overview.py` and `subnet_validator_overview.py` make repeated on-chain calls per validator. On subnets with many active validators, expect runtime of several minutes.
+> **Note:** `subnet_deep_overview.py` and `subnet_validator_overview.py` make repeated on-chain calls per validator. On subnets with many active validators, expect runtime of several minutes. `chutes_sn64_analysis.py` fetches 168 hourly CSV archives sequentially — expect runtime of 10-20 minutes depending on connection speed.
 
 ---
 
@@ -63,15 +77,16 @@ This is not financial advice. All yield estimates are point-in-time calculations
 ---
 
 ## Articles
+
 These tools were built alongside the following research:
-- [Bittensor Emissions: What the Table Doesn't Tell You](https://x.com/im_perseverance/status/2022673949277016244)
-- [Root Staking on Bittensor: The Structural Yield Analysis](https://x.com/im_perseverance/status/2025974805132882194)
-- [Subnet Staking on Bittensor: The Structural Yield Analysis](https://x.com/im_perseverance/status/2028546102119780484)
+
+* [Bittensor Emissions: What the Table Doesn't Tell You](https://x.com/im_perseverance/status/2022673949277016244)
+* [Root Staking on Bittensor: The Structural Yield Analysis](https://x.com/im_perseverance/status/2025974805132882194)
+* [Subnet Staking on Bittensor: The Structural Yield Analysis](https://x.com/im_perseverance/status/2028546102119780484)
+* [Chutes SN64: Empirical Case Study](https://x.com/im_perseverance/status/2033214446810669137)
 
 ---
 
 ## License
 
 Apache 2.0. See `LICENSE` for full terms.
-
----
