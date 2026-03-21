@@ -27,7 +27,7 @@ Root is not simply lower yield — it is structural capital. TAO functions as a 
 
 ### `chutes_sn64_analysis.py`
 
-SN64 Chutes intelligence market hypothesis test. Fetches 7-day invocation exports from api.chutes.ai, merges with on-chain metagraph data, and tests whether validator weight allocations reflect real demand. Outputs Spearman and Pearson correlation analysis, divergence tables, demand-side user concentration, Root x SN64 validator overlap, and miner incentive concentration metrics. The forensic methodology navigates Chutes' E2EE architecture using timing data, function distributions, and image ownership records to fingerprint the dominant user without accessing encrypted content.
+SN64 Chutes intelligence market hypothesis test. Fetches 7-day invocation exports from api.chutes.ai in a single-pass sequential stream, merges with on-chain metagraph data, and tests whether validator weight allocations reflect real demand. Outputs Spearman and Pearson correlation analysis, divergence tables, demand-side user concentration, Root × SN64 validator overlap, and miner incentive concentration metrics. Includes an eight-signal E2EE perimeter forensics layer that evaluates demand authenticity at the metadata boundary without accessing encrypted content. Signal weights and longitudinal tracking are not included in this reference implementation.
 
 ---
 
