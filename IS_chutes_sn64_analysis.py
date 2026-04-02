@@ -1,5 +1,5 @@
 """
-chutes_sn64_analysis.py
+IS_chutes_sn64_analysis.py
 =======================
 SN64 Chutes — Intelligence Market Hypothesis Test + E2EE Perimeter Forensics
 Part of the Intelligence Sovereignty research suite by @im_perseverance
